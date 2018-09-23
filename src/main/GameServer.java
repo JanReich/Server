@@ -55,9 +55,7 @@ import java.util.Map;
 
                 if(clients.get(pClientIP) == null) {
 
-                    System.out.println(pMessage);
                     String[] substrings = pMessage.split(": ");
-
                     String username = substrings[2].replace(", spectator", "");
                     boolean spectator = Boolean.parseBoolean(substrings[3]);
 
@@ -95,7 +93,7 @@ import java.util.Map;
                                     playerCount++;
                                     names.add(username);
                                     send(pClientIP, pClientPort, "RegisterSuccessful: " + clientID);
-                                    clients.put(pClientIP, new ClientData(pClientIP, pClientPort, username, spectator));
+                                    clients.put(pClientIP, new ClientData(pClientIP, pClientPort, username, spectator, clientID));
                                     System.out.println("[Server] Client \"" + username + "\" hat sich mit dem Server als Spieler verbunden!");
                                 } else send(pClientIP, pClientPort, "Disconnect: Server full");
                             }
