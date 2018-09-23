@@ -69,27 +69,32 @@ import java.util.Map;
                             if(spectator) {
 
                                 names.add(username);
-                                send(pClientIP, pClientPort, "RegisterSuccessful:");
+                                send(pClientIP, pClientPort, "RegisterSuccessful: ");
                                 clients.put(pClientIP, new ClientData(pClientIP, pClientPort, username, spectator));
                                 System.out.println("[Server] Client \"" + username + "\" hat sich mit dem Server als Spectator verbunden!");
                             } else {
 
                                 if(playerCount < maxPlayer) {
 
+                                    int clientID = 0;
+
                                     if(clientID1 == null) {
 
+                                        clientID = 1;
                                         clientID1 = pClientIP;
                                     } else if(clientID2 == null) {
 
+                                        clientID = 2;
                                         clientID2 = pClientIP;
                                     } else if(clientID3 == null) {
 
+                                        clientID = 3;
                                         clientID3 = pClientIP;
                                     }
 
                                     playerCount++;
                                     names.add(username);
-                                    send(pClientIP, pClientPort, "RegisterSuccessful:");
+                                    send(pClientIP, pClientPort, "RegisterSuccessful: " + clientID);
                                     clients.put(pClientIP, new ClientData(pClientIP, pClientPort, username, spectator));
                                     System.out.println("[Server] Client \"" + username + "\" hat sich mit dem Server als Spieler verbunden!");
                                 } else send(pClientIP, pClientPort, "Disconnect: Server full");
