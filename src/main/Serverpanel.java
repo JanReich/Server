@@ -77,9 +77,12 @@ import java.util.Map;
 
                     i++;
                     ClientData data = entry.getValue();
-                    draw.drawString(data.getUsername(), 150, 280 + 100 * i);
-                    draw.drawRec(650, 270 + 100 * i, 20);
-                    draw.drawLine(100, 300 + 100 * i, 800, 300 + 100 * i);
+                    if(data != null) {
+
+                        draw.drawString(data.getUsername(), 150, 280 + 100 * i);
+                        draw.drawRec(650, 270 + 100 * i, 20);
+                        draw.drawLine(100, 300 + 100 * i, 800, 300 + 100 * i);
+                    }
                 }
 
                 i = 0;
