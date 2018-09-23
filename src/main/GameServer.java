@@ -15,6 +15,11 @@ import java.util.Map;
             private final int maxPlayer;
             private final boolean spectatingAllowed;
 
+                //ClientsIDs
+            private String clientID1 = null;
+            private String clientID2 = null;
+            private String clientID3 = null;
+
                 //Referenzen
             private List<String> names;
             private Map<String, ClientData> clients;
@@ -71,6 +76,17 @@ import java.util.Map;
 
                                 if(playerCount < maxPlayer) {
 
+                                    if(clientID1 == null) {
+
+                                        clientID1 = pClientIP;
+                                    } else if(clientID2 == null) {
+
+                                        clientID2 = pClientIP;
+                                    } else if(clientID3 == null) {
+
+                                        clientID3 = pClientIP;
+                                    }
+
                                     playerCount++;
                                     names.add(username);
                                     send(pClientIP, pClientPort, "RegisterSuccessful:");
@@ -92,7 +108,14 @@ import java.util.Map;
 
             if(clients.containsKey(pClientIP) && clients.get(pClientIP).getClientPort() == pClientPort) {
 
-                if(!clients.get(pClientIP).isSpectator()) playerCount--;
+                if(!clients.get(pClientIP).isSpectator()) {
+
+                    playerCount--;
+
+                    if(pClientIP == clientID1) clientID1 = null;
+                    if(pClientIP == clientID2) clientID2 = null;
+                    if(pClientIP == clientID3) clientID3 = null;
+                }
                 System.out.println("[Server] Client \"" + clients.get(pClientIP).getUsername() + "\" hat die Verbindung zum Server getrennt!");
                 names.remove(clients.get(pClientIP));
                 clients.remove(pClientIP);
