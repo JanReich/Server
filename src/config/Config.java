@@ -7,8 +7,8 @@ import java.io.File;
     public abstract class Config {
 
                 //Attribute
-        //Jan stinkt!!!
 
+        
                 //Referenzen
             protected File file;
 
