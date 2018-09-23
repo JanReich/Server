@@ -106,19 +106,25 @@ import java.util.Map;
         @Override
         public void processClosingConnection(String pClientIP, int pClientPort) {
 
-            if(clients.containsKey(pClientIP) && clients.get(pClientIP).getClientPort() == pClientPort) {
+            if(clients != null) {
 
-                if(!clients.get(pClientIP).isSpectator()) {
+                if(clients.containsKey(pClientIP) && clients.get(pClientIP) != null) {
 
-                    playerCount--;
+                    if (clients.get(pClientIP).getClientPort() == pClientPort) {
 
-                    if(pClientIP == clientID1) clientID1 = null;
-                    if(pClientIP == clientID2) clientID2 = null;
-                    if(pClientIP == clientID3) clientID3 = null;
+                        if (!clients.get(pClientIP).isSpectator()) {
+
+                            playerCount--;
+
+                            if (pClientIP == clientID1) clientID1 = null;
+                            if (pClientIP == clientID2) clientID2 = null;
+                            if (pClientIP == clientID3) clientID3 = null;
+                        }
+                        System.out.println("[Server] Client \"" + clients.get(pClientIP).getUsername() + "\" hat die Verbindung zum Server getrennt!");
+                        names.remove(clients.get(pClientIP));
+                        clients.remove(pClientIP);
+                    }
                 }
-                System.out.println("[Server] Client \"" + clients.get(pClientIP).getUsername() + "\" hat die Verbindung zum Server getrennt!");
-                names.remove(clients.get(pClientIP));
-                clients.remove(pClientIP);
             }
 
             panel.updateClients(clients);
