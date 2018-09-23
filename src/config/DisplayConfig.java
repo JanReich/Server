@@ -36,7 +36,7 @@ import java.util.HashMap;
         public void readConfig() {
 
             width = Integer.parseInt(FileHelper.getProperty(file, "width"));
-            height = Integer.parseInt(FileHelper.getProperty(file, "width"));
+            height = Integer.parseInt(FileHelper.getProperty(file, "height"));
 
             resizable = Boolean.parseBoolean(FileHelper.getProperty(file, "resizable"));
             alwaysOnTop = Boolean.parseBoolean(FileHelper.getProperty(file, "alwaysOnTop"));
