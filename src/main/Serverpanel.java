@@ -1,6 +1,5 @@
 package main;
 
-import abitur.netz.Client;
 import config.ServerConfig;
 import graphics.Display;
 import graphics.interfaces.BasicInteractableObject;
@@ -94,7 +93,7 @@ import java.util.Map;
          */
         private void startServer() {
 
-            System.out.println("Versuche Server zu starten...");
+            System.out.println("[Server] Versuche einen Server auf dem Port " + port + "  zu starten...");
             new GameServer(this, port, minPlayer, maxPlayer, spectatorJoin);
         }
 
