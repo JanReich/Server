@@ -112,12 +112,19 @@ import java.util.Map;
 
                                     for (Map.Entry<String, ClientData> entry : clients.entrySet()) {
 
-                                        if(!(entry.getKey() == pClientIP) && entry.getValue() != null) {
+                                        if(entry.getValue() != null) {
 
-                                            message += "clientID:" + entry.getValue().getClientID() + ":";
-                                            message += "username:" + entry.getValue().getUsername() + ":";
-                                        } else continue;
+                                            if(pClientIP.equals(entry.getKey())) {
+
+
+                                            } else {
+
+                                                message += "clientID:" + entry.getValue().getClientID() + ":";
+                                                message += "username:" + entry.getValue().getUsername() + ":";
+                                            }
+                                        }
                                     }
+
                                     send(pClientIP, pClientPort, message);
                                 }
 
@@ -148,9 +155,19 @@ import java.util.Map;
 
                             playerCount--;
 
-                            if (pClientIP.equals(clientID1)) clientID1 = null;
-                            if (pClientIP.equals(clientID2)) clientID2 = null;
-                            if (pClientIP.equals(clientID3)) clientID3 = null;
+                            if (pClientIP.equals(clientID1)) {
+
+                                clientID1 = null;
+                                sendToAll("Client disconnected: 1");
+                            } else if (pClientIP.equals(clientID2)) {
+
+                                clientID2 = null;
+                                sendToAll("Client disconnected: 2");
+                            } else if (pClientIP.equals(clientID3)) {
+
+                                clientID3 = null;
+                                sendToAll("Client disconnected: 3");
+                            }
                         }
                         names.remove(clients.get(pClientIP).getUsername());
                         System.out.println("[Server] Client \"" + clients.get(pClientIP).getUsername() + "\" hat die Verbindung zum Server getrennt!");
