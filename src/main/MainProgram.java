@@ -8,8 +8,6 @@ public class MainProgram {
 
                 //Attribute
 
-    //Test
-
                 //Referenzen
             private Display display;
 
