@@ -69,6 +69,22 @@ import java.util.Map;
 
                             if(!started) {
 
+                                    //Senden der Player-Daten von den Spielern die bisher schon connected sind
+                                if(clients.size() != 1) {
+
+                                    String message = "ClientData: ";
+
+                                    for (Map.Entry<String, ClientData> entry : clients.entrySet()) {
+
+                                        if(!(entry.getKey() == pClientIP) && entry.getValue() != null) {
+
+                                            message += "clientID:" + entry.getValue().getClientID() + ":";
+                                            message += "username:" + entry.getValue().getUsername() + ":";
+                                        } else continue;
+                                    }
+                                    send(pClientIP, pClientPort, message);
+                                }
+
                                 //Wenn der Spieler als Spectator joint
                                 if (spectator) {
 
@@ -96,8 +112,7 @@ import java.util.Map;
                                             clientID3 = pClientIP;
                                         }
 
-                                        //TODO: Alle Player informieren, dass ein neuer Player gejoint ist
-                                        sendToAll("NewPlayer: clientID:" + clientID + "|username:" + username);
+                                        sendToAll("NewPlayer: clientID:" + clientID + ":username:" + username);
 
                                         playerCount++;
                                         names.add(username);
@@ -116,7 +131,6 @@ import java.util.Map;
 
 
             }
-
 
             panel.updateClients(clients);
         }
