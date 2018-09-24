@@ -114,10 +114,8 @@ import java.util.Map;
 
                                         if(entry.getValue() != null) {
 
-                                            if(pClientIP.equals(entry.getKey())) {
-
-
-                                            } else {
+                                            if(pClientIP.equals(entry.getKey())) {}
+                                            else {
 
                                                 message += "clientID:" + entry.getValue().getClientID() + ":";
                                                 message += "username:" + entry.getValue().getUsername() + ":";
