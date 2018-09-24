@@ -119,12 +119,12 @@ import java.util.Map;
 
                             playerCount--;
 
-                            if (pClientIP == clientID1) clientID1 = null;
-                            if (pClientIP == clientID2) clientID2 = null;
-                            if (pClientIP == clientID3) clientID3 = null;
+                            if (pClientIP.equals(clientID1)) clientID1 = null;
+                            if (pClientIP.equals(clientID2)) clientID2 = null;
+                            if (pClientIP.equals(clientID3)) clientID3 = null;
                         }
+                        names.remove(clients.get(pClientIP).getUsername());
                         System.out.println("[Server] Client \"" + clients.get(pClientIP).getUsername() + "\" hat die Verbindung zum Server getrennt!");
-                        names.remove(clients.get(pClientIP));
                         clients.remove(pClientIP);
                     }
                 }
