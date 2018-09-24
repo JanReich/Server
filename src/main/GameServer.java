@@ -97,14 +97,14 @@ import java.util.Map;
                                         }
 
                                         //TODO: Alle Player informieren, dass ein neuer Player gejoint ist
-                                        sendToAll("ClientRegistered: clientID:" + clientID + " username:" + username);
+                                        sendToAll("NewPlayer: clientID:" + clientID + "|username:" + username);
 
                                         playerCount++;
                                         names.add(username);
                                         send(pClientIP, pClientPort, "RegisterSuccessful: " + clientID);
                                         clients.put(pClientIP, new ClientData(pClientIP, pClientPort, username, spectator, clientID));
                                         System.out.println("[Server] Client \"" + username + "\" hat sich mit dem Server als Spieler verbunden!");
-                                    } else send(pClientIP, pClientPort, "Disconnect: Server full");
+                                    } else send(pClientIP, pClientPort,"Disconnect: Server full");
                                 }
                             } else send(pClientIP, pClientPort, "Disconnect: Game Already started");
                         } else send(pClientIP, pClientPort, "Disconnect: No Spectators allowed");
