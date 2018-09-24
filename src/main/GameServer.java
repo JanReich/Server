@@ -69,23 +69,7 @@ import java.util.Map;
 
                             if(!started) {
 
-                                    //Senden der Player-Daten von den Spielern die bisher schon connected sind
-                                if(clients.size() != 1) {
-
-                                    String message = "ClientData: ";
-
-                                    for (Map.Entry<String, ClientData> entry : clients.entrySet()) {
-
-                                        if(!(entry.getKey() == pClientIP) && entry.getValue() != null) {
-
-                                            message += "clientID:" + entry.getValue().getClientID() + ":";
-                                            message += "username:" + entry.getValue().getUsername() + ":";
-                                        } else continue;
-                                    }
-                                    send(pClientIP, pClientPort, message);
-                                }
-
-                                //Wenn der Spieler als Spectator joint
+                                    //Wenn der Spieler als Spectator joint
                                 if (spectator) {
 
                                     names.add(username);
@@ -112,15 +96,31 @@ import java.util.Map;
                                             clientID3 = pClientIP;
                                         }
 
-                                        sendToAll("NewPlayer: clientID:" + clientID + ":username:" + username);
-
                                         playerCount++;
                                         names.add(username);
                                         send(pClientIP, pClientPort, "RegisterSuccessful: " + clientID);
+                                        sendToAll("NewPlayer: clientID:" + clientID + ":username:" + username);
                                         clients.put(pClientIP, new ClientData(pClientIP, pClientPort, username, spectator, clientID));
                                         System.out.println("[Server] Client \"" + username + "\" hat sich mit dem Server als Spieler verbunden!");
                                     } else send(pClientIP, pClientPort,"Disconnect: Server full");
                                 }
+
+                                    //Senden der Player-Daten von den Spielern die bisher schon connected sind
+                                if(clients.size() != 1) {
+
+                                    String message = "ClientData: ";
+
+                                    for (Map.Entry<String, ClientData> entry : clients.entrySet()) {
+
+                                        if(!(entry.getKey() == pClientIP) && entry.getValue() != null) {
+
+                                            message += "clientID:" + entry.getValue().getClientID() + ":";
+                                            message += "username:" + entry.getValue().getUsername() + ":";
+                                        } else continue;
+                                    }
+                                    send(pClientIP, pClientPort, message);
+                                }
+
                             } else send(pClientIP, pClientPort, "Disconnect: Game Already started");
                         } else send(pClientIP, pClientPort, "Disconnect: No Spectators allowed");
                     } else send(pClientIP, pClientPort, "Disconnect: Username Already in use");
