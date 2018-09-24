@@ -99,8 +99,7 @@ import java.util.Map;
                             }
                         } else send(pClientIP, pClientPort, "Disconnect: No Spectators allowed");
                     } else send(pClientIP, pClientPort, "Disconnect: Username Already in use");
-                }
-                else send(pClientIP, pClientPort, "Disconnect: A Client of this Device is already connected to the Server");
+                } else send(pClientIP, pClientPort, "Disconnect: A Client of this Device is already connected to the Server");
             }
 
 
