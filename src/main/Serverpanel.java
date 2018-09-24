@@ -93,7 +93,7 @@ import java.util.Map;
          */
         private void startServer() {
 
-            System.out.println("[Server] Versuche einen Server auf dem Port " + port + "  zu starten...");
+            System.out.println("[Server] Versuche einen Server auf dem Port " + port + " zu starten...");
             new GameServer(this, port, minPlayer, maxPlayer, spectatorJoin);
         }
 
